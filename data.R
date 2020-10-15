@@ -21,8 +21,8 @@ official <- read.taf("bootstrap/data/ICES_nominal_catches/ICES_2006_2018_catches
 prelim <- read.taf("bootstrap/data/ICES_nominal_catches/ICES_preliminary_catches.csv")
 
 catch_dat <-
-  format_catches(2020, "Baltic Sea",
-    hist, official, prelim, species_list, sid)
+  format_catches(2019, "Faroes",
+    hist, official, NULL, species_list, sid)
 
 write.taf(catch_dat, dir = "data", quote = TRUE)
 

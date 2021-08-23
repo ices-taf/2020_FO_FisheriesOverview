@@ -24,10 +24,6 @@ cap_year = "2020"
 year = 2020
 
 
-###########
-## 3: SAG #
-###########
-
 #~~~~~~~~~~~~~~~#
 # A. Trends by guild
 #~~~~~~~~~~~~~~~#
@@ -66,36 +62,35 @@ dat <- plot_stock_trends(trends, guild="crustacean", cap_year , cap_month , retu
 write.taf(dat, file =paste0(year_cap, "_", ecoreg, "_FO_SAG_Trends_crustacean.csv"), dir = "report" )
 
 
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Ecosystem Overviews plot
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
-guild <- read.taf("model/guild.csv")
-
-# For this EO, they need separate plots with all info
-
-guild2 <- guild %>% filter(Metric == "F_FMSY")
-plot_guild_trends(guild, cap_year = 2019, cap_month = "October",return_data = FALSE )
-ggplot2::ggsave("2019_BtS_EO_GuildTrends.png", path = "report/", width = 178, height = 130, units = "mm", dpi = 300)
-guild2 <- guild2 %>% filter(FisheriesGuild != "MEAN")
-plot_guild_trends(guild2, cap_year = 2019, cap_month = "November",return_data = FALSE )
-ggplot2::ggsave("2019_BtS_EO_GuildTrends_noMEAN_F.png", path = "report/", width = 178, height = 130, units = "mm", dpi = 300)
-
-guild2 <- guild %>% filter(Metric == "SSB_MSYBtrigger")
-guild3 <- guild2 %>% dplyr::filter(FisheriesGuild != "MEAN")
-plot_guild_trends(guild3, cap_year = 2019, cap_month = "November",return_data = FALSE )
-ggplot2::ggsave("2019_BtS_EO_GuildTrends_short_noMEAN_SSB.png", path = "report/", width = 178, height = 130, units = "mm", dpi = 300)
-
-
-dat <- plot_guild_trends(guild, cap_year = 2019, cap_month = "October",return_data = TRUE)
-write.taf(dat, file ="2019_BtS_EO_GuildTrends.csv", dir = "report", quote = TRUE)
-
-dat <- trends[,1:2]
-dat <- unique(dat)
-dat <- dat %>% filter(StockKeyLabel != "MEAN")
-dat2 <- sid %>% select(c(StockKeyLabel, StockKeyDescription))
-dat <- left_join(dat,dat2)
-write.taf(dat, file ="2019_BtS_EO_SpeciesGuild_list.csv", dir = "report", quote = TRUE)
+# guild <- read.taf("model/guild.csv")
+# 
+# # For this EO, they need separate plots with all info
+# 
+# guild2 <- guild %>% filter(Metric == "F_FMSY")
+# plot_guild_trends(guild, cap_year = 2019, cap_month = "October",return_data = FALSE )
+# ggplot2::ggsave("2019_BtS_EO_GuildTrends.png", path = "report/", width = 178, height = 130, units = "mm", dpi = 300)
+# guild2 <- guild2 %>% filter(FisheriesGuild != "MEAN")
+# plot_guild_trends(guild2, cap_year = 2019, cap_month = "November",return_data = FALSE )
+# ggplot2::ggsave("2019_BtS_EO_GuildTrends_noMEAN_F.png", path = "report/", width = 178, height = 130, units = "mm", dpi = 300)
+# 
+# guild2 <- guild %>% filter(Metric == "SSB_MSYBtrigger")
+# guild3 <- guild2 %>% dplyr::filter(FisheriesGuild != "MEAN")
+# plot_guild_trends(guild3, cap_year = 2019, cap_month = "November",return_data = FALSE )
+# ggplot2::ggsave("2019_BtS_EO_GuildTrends_short_noMEAN_SSB.png", path = "report/", width = 178, height = 130, units = "mm", dpi = 300)
+# 
+# 
+# dat <- plot_guild_trends(guild, cap_year = 2019, cap_month = "October",return_data = TRUE)
+# write.taf(dat, file ="2019_BtS_EO_GuildTrends.csv", dir = "report", quote = TRUE)
+# 
+# dat <- trends[,1:2]
+# dat <- unique(dat)
+# dat <- dat %>% filter(StockKeyLabel != "MEAN")
+# dat2 <- sid %>% select(c(StockKeyLabel, StockKeyDescription))
+# dat <- left_join(dat,dat2)
+# write.taf(dat, file ="2019_BtS_EO_SpeciesGuild_list.csv", dir = "report", quote = TRUE)
 
 #~~~~~~~~~~~~~~~#
 # B.Current catches
@@ -218,7 +213,7 @@ write.taf(bar_dat, file =paste0(year_cap, "_", ecoreg, "_FO_SAG_Current_All.csv"
 
 kobe <- plot_kobe(catch_current, guild = "All", caption = TRUE, cap_year, cap_month , return_data = FALSE)
 #check this file name
-png("report/2020_BtS_FO_SAG_Current_All.png",
+png("report/2020_FO_FO_SAG_Current_All.png",
     width = 131.32,
     height = 88.9,
     units = "mm",
@@ -264,7 +259,6 @@ write.taf(dat, file= paste0(year_cap,"_", ecoreg, "_FO_SAG_ICESpies.csv"),dir ="
 #E. GES pies
 #~~~~~~~~~~~~~~~#
 
-#Need to change order and fix numbers
 plot_GES_pies(clean_status, catch_current, cap_month, cap_year)
 ggplot2::ggsave(paste0(year_cap,"_",ecoreg,"_FO_SAG_GESpies.png"),path = "report",width = 178, height = 178, units = "mm",dpi = 300)
 

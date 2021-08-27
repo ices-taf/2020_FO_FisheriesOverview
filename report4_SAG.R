@@ -244,6 +244,8 @@ write.taf(dat, file =paste0(year_cap,"_", ecoreg, "_FO_SAG_Discards_current.csv"
 cowplot::plot_grid(discardsA, discardsB, discardsC, align = "h",nrow = 1, rel_widths = 1, rel_heights = 1)
 ggplot2::ggsave(paste0(year_cap,"_", ecoreg, "_FO_SAG_Discards.png"),path = "report/", width = 220.32, height = 88.9, units = "mm", dpi = 300)
 
+# review units in x labels in b and c!!
+
 
 #~~~~~~~~~~~~~~~#
 #D. ICES pies
@@ -271,8 +273,9 @@ write.taf(dat, file = paste0(year_cap,"_",ecoreg, "_FO_SAG_GESpies.csv"),dir ="r
 
 
 dat <- format_annex_table(clean_status, year)
+# write.csv(dat, file = paste0(year_cap,"_", ecoreg, "_FO_SAG_annex_table.csv"))
 
-write.taf(dat, file = paste0(year_cap,"_", ecoreg, "_FO_SAG_annex_table.csv"), dir = "report")
+write.taf(dat, file = paste0(year_cap,"_", ecoreg, "_FO_SAG_annex_table.csv"), dir = "report", quote=TRUE)
 
 # This annex table has to be edited by hand,
 # For SBL and GES only one values is reported,

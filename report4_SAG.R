@@ -1,6 +1,6 @@
 
 library(icesTAF)
-taf.library(icesFO)
+library(icesFO)
 library(sf)
 library(ggplot2)
 library(dplyr)
@@ -17,11 +17,11 @@ catch_trends <- read.taf("model/catch_trends.csv")
 clean_status <- read.taf("data/clean_status.csv")
 
 #set year and month for captions:
-cap_month = "September"
-cap_year = "2020"
+cap_month = "October"
+cap_year = "2021"
 # set year for plot claculations
 
-year = 2020
+year = 2021
 
 
 #~~~~~~~~~~~~~~~#
@@ -108,7 +108,7 @@ kobe <- plot_kobe(catch_current, guild = "demersal", caption = TRUE, cap_year , 
 #kobe_dat <- plot_kobe(catch_current, guild = "Demersal", caption = T, cap_year , cap_month , return_data = TRUE)
 
 #Check this file name
-png("report/2020_FO_FO_SAG_Current_demersal.png",
+png(sprintf("report/%s_FO_FO_SAG_Current_demersal.png", year),
     width = 131.32,
     height = 88.9,
     units = "mm",
@@ -128,7 +128,7 @@ write.taf(bar_dat, file =paste0(year_cap, "_", ecoreg, "_FO_SAG_Current_pelagic.
 catch_current <- unique(catch_current)
 kobe <- plot_kobe(catch_current, guild = "pelagic", caption = TRUE, cap_year , cap_month , return_data = FALSE)
 #check this file name
-png("report/2020_FO_FO_SAG_Current_pelagic.png",
+png(sprintf("report/%s_FO_FO_SAG_Current_pelagic.png", year),
     width = 131.32,
     height = 88.9,
     units = "mm",
@@ -150,7 +150,7 @@ write.taf(bar_dat, file =paste0(year_cap, "_", ecoreg, "_FO_SAG_Current_benthic.
 
 kobe <- plot_kobe(catch_current, guild = "benthic", caption = TRUE, cap_year , cap_month , return_data = FALSE)
 #check this file name
-png("report/2020_FO_FO_SAG_Current_benthic.png",
+png(sprintf("report/%s_FO_FO_SAG_Current_benthic.png", year),
     width = 131.32,
     height = 88.9,
     units = "mm",
@@ -171,7 +171,7 @@ write.taf(bar_dat, file =paste0(year_cap, "_", ecoreg, "_FO_SAG_Current_elasmobr
 
 kobe <- plot_kobe(catch_current, guild = "elasmobranch", caption = TRUE, cap_year , cap_month , return_data = FALSE)
 #check this file name
-png("report/2020_FO_FO_SAG_Current_elasmobranch.png",
+png(sprintf("report/%s_FO_FO_SAG_Current_elasmobranch.png", year),
     width = 131.32,
     height = 88.9,
     units = "mm",
@@ -192,7 +192,7 @@ write.taf(bar_dat, file =paste0(year_cap, "_", ecoreg, "_FO_SAG_Current_crustace
 
 kobe <- plot_kobe(catch_current, guild = "crustacean", caption = TRUE, cap_year , cap_month , return_data = FALSE)
 #check this file name
-png("report/2020_FO_FO_SAG_Current_crustacean.png",
+png(sprintf("report/%s_FO_FO_SAG_Current_crustacean.png", year),
     width = 131.32,
     height = 88.9,
     units = "mm",
@@ -213,7 +213,7 @@ write.taf(bar_dat, file =paste0(year_cap, "_", ecoreg, "_FO_SAG_Current_All.csv"
 
 kobe <- plot_kobe(catch_current, guild = "All", caption = TRUE, cap_year, cap_month , return_data = FALSE)
 #check this file name
-png("report/2020_FO_FO_SAG_Current_All.png",
+png(sprintf("report/%s_FO_FO_SAG_Current_all.png", year),
     width = 131.32,
     height = 88.9,
     units = "mm",
@@ -272,7 +272,7 @@ write.taf(dat, file = paste0(year_cap,"_",ecoreg, "_FO_SAG_GESpies.csv"),dir ="r
 
 dat <- format_annex_table(clean_status, year)
 
-write.taf(dat, file = paste0(year_cap,"_", ecoreg, "_FO_SAG_annex_table.csv"), dir = "report")
+write.taf(dat, file = paste0(year_cap,"_", ecoreg, "_FO_SAG_annex_table.csv"), dir = "report", quote=TRUE)
 
 # This annex table has to be edited by hand,
 # For SBL and GES only one values is reported,

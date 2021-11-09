@@ -12,20 +12,20 @@ library(dplyr)
 
 # read vms fishing effort
 effort <-
-  sf::st_read("vms_effort.csv",
+  sf::st_read("bootstrap/data/vms_effort.csv",
                options = "GEOM_POSSIBLE_NAMES=wkt", crs = 4326)
 effort <- dplyr::select(effort, -WKT)
 
 # read vms swept area ratio
 sar <-
-  sf::st_read("vms_sar.csv",
+  sf::st_read("bootstrap/data/vms_sar.csv",
                options = "GEOM_POSSIBLE_NAMES=wkt", crs = 4326)
 sar <- dplyr::select(sar, -WKT)
 
 
 #set range of years in plots
 
-year_range = "2016-2019"
+year_range = "2016-2020" ## NEED TO CHECK THIS
 
 
 ###########

@@ -18,9 +18,12 @@ hist <- read.taf("bootstrap/data/ICES_nominal_catches/ICES_historical_catches.cs
 official <- read.taf("bootstrap/data/ICES_nominal_catches/ICES_2006_2018_catches.csv")
 prelim <- read.taf("bootstrap/data/ICES_nominal_catches/2019PreliminaryCatchStatistics.csv")
 
+# catch_dat <-
+#   format_catches(2020, "Faroes",
+#     hist, official, prelim, species_list, sid)
 catch_dat <-
-  format_catches(2020, "Faroes",
-    hist, official, prelim, species_list, sid)
+        format_catches(2020, "Faroes",
+                       hist, official,NULL,species_list, sid)
 
 write.taf(catch_dat, dir = "data", quote = TRUE)
 
@@ -33,8 +36,8 @@ sag_sum <- read.taf("bootstrap/data/SAG_data/SAG_summary.csv")
 sag_refpts <- read.taf("bootstrap/data/SAG_data/SAG_refpts.csv")
 sag_status <- read.taf("bootstrap/data/SAG_data/SAG_status.csv")
 
-clean_sag <- format_sag(sag_sum, sag_refpts, 2020, "Faroes")
-clean_status <- format_sag_status(sag_status, 2020, "Faroes")
+clean_sag <- format_sag(sag_sum, sag_refpts, 2021, "Faroes")
+clean_status <- format_sag_status(sag_status, 2021, "Faroes")
 
 check <- unique(clean_sag$StockKeyLabel)
 unique(clean_sag$StockKeyLabel)

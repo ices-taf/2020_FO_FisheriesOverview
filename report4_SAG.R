@@ -273,7 +273,11 @@ write.taf(dat, file = paste0(year_cap,"_",ecoreg, "_FO_SAG_GESpies.csv"),dir ="r
 
 
 dat <- format_annex_table(clean_status, year)
+
+
 # write.csv(dat, file = paste0(year_cap,"_", ecoreg, "_FO_SAG_annex_table.csv"))
+html_annex_table(dat, cap_year, ecoreg_code)
+
 
 write.taf(dat, file = paste0(year_cap,"_", ecoreg, "_FO_SAG_annex_table.csv"), dir = "report", quote=TRUE)
 
